@@ -23,7 +23,7 @@ The schema lives in a sparkify company's analytics database called **sparkifydb*
 #### FACT TABLE/S 
   * songplays( songplay_id, start_time, user_id, level,song_id, artist_id, session_id,location,user_agent )
 
-![Optional Text](/images/erd.PNG)
+![Optional Text](../images/erd.PNG)
 
 ####  WHAT CREATES THE DATABASE TABLES IN POSTGRESS ? 
   Python script create_tables.py creates the required tables in the database . Just run the script as 
