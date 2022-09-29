@@ -43,6 +43,20 @@ $ grep -r "ARNTLGG11E2835DDB9"
     A/A/C/TRAACIW12903CC0F6D.json:{"num_songs": 1, "artist_id": "ARNTLGG11E2835DDB9", "artist_latitude": null, "artist_longitude": null, "artist_location": "", "artist_name": "Clp", "song_id": "SOZQDIU12A58A7BCF6", "title": "Superconfidential", "duration": 338.31138, "year": 0}
 </pre>
 
+<pre>
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "songs_pkey"
+DETAIL:  Key (song_id)=(SOMZWCG12A8C13C480) already exists.
+</pre>
+
+ON CONFLICT DO NOTHING;
+<pre>
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_pkey"
+DETAIL:  Key (user_id)=(8) already exists.
+</pre>
+
+ON CONFLICT DO NOTHING;
+
+
 While it is possible to have two artist record matching same ID with different song , for the scope of the artist table though , this duplication againts the principle 
 therefore, onconflict clause is set to load only one of them 
 **
