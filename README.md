@@ -25,6 +25,7 @@ The schema lives in a sparkify company's analytics database called **sparkifydb*
 
 ![Optional Text](images/erd.png)
 
+
 ####  WHAT CREATES THE DATABASE TABLES IN POSTGRESS ? 
   Python script create_tables.py creates the required tables in the database . Just run the script as 
     phthon3 ./create_tables.py 
