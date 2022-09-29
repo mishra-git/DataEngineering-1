@@ -6,20 +6,28 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    '''This fuction takes cursor object and file path as the two arguments 
+       It extracts the data from each files under song_data and insert into the tables '''
     # open song file
     df = pd.DataFrame(pd.read_json( filepath,lines=True,orient='columns'))
 
     # insert song record
-    song_data =  (df.values[0][7], df.values[0][8], df.values[0][0], df.values[0][9], df.values[0][5])
+    #song_data =  (df.values[0][7], df.values[0][8], df.values[0][0], df.values[0][9], df.values[0][5])
+    song_data = list(
+        df[['song_id', 'title', 'artist_id', 'year', 'duration']].values[0])
 
     cur.execute(song_table_insert, song_data)
 
-    artist_data = ( df.values[0][0], df.values[0][4], df.values[0][2], df.values[0][1], df.values[0][3])
+   # artist_data = ( df.values[0][0], df.values[0][4], df.values[0][2], df.values[0][1], df.values[0][3])
+    artist_data = list(df[['artist_id', 'artist_name', 'artist_location',
+                           'artist_latitude', 'artist_longitude']].values[0])
     cur.execute(artist_table_insert, artist_data)
 
 
 
 def process_log_file(cur, filepath):
+    '''This fuction takes cursor object and file path as the two arguments 
+       It extracts the data from each files under log_data and insert into the tables '''
     # open log file
     df =  df = pd.DataFrame(pd.read_json(filepath,lines=True,orient='columns'))
 
@@ -87,6 +95,9 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    '''function takes cursor, connection object , filepath and a function as arguements 
+       calculates the details such as number of files 
+    '''
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):

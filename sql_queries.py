@@ -8,7 +8,7 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 
 #THIS SECTION CONTAINS THE DDL STATEMENTS FOR CREATING THE TABLES 
 
-songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplays  (songplay_id serial primary key not null, start_time timestamp not null,  user_id varchar not null, level varchar not null , song_id varchar not null, artist_id varchar not null , session_id int not null, location varchar not null, user_agent varchar not null)""")
+songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplays  (songplay_id not null, start_time timestamp not null,  user_id varchar not null, level varchar not null , song_id varchar not null, artist_id varchar not null , session_id int not null, location varchar not null, user_agent varchar not null)""")
 user_table_create = ("""CREATE TABLE IF NOT EXISTS users (user_id varchar  primary key, first_name varchar, last_name varchar, gender varchar, level varchar)""") 
 song_table_create = ("""CREATE TABLE IF NOT EXISTS songs (song_id varchar primary key , title varchar, artist_id varchar, year int, duration decimal)""")
 artist_table_create = ("""CREATE TABLE IF NOT EXISTS artists (artist_id varchar primary key , name varchar, location varchar, latitude decimal null, longitude decimal null)""")
@@ -56,6 +56,7 @@ artist_table_insert = ("""
                         latitude, \
                         longitude)
     VALUES (%s, %s, %s, %s, %s)
+    ON CONFLICT DO NOTHING;
     
 """)
 
