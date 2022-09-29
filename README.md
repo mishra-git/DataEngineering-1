@@ -23,7 +23,7 @@ The schema lives in a sparkify company's analytics database called **sparkifydb*
 #### FACT TABLE/S 
   * songplays( songplay_id, start_time, user_id, level,song_id, artist_id, session_id,location,user_agent )
 
-![Optional Text](images/erd.png)
+![Optional Text](images/Erd.JPG)
 
 
 ####  WHAT CREATES THE DATABASE TABLES IN POSTGRESS ? 
