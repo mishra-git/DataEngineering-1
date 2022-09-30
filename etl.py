@@ -86,8 +86,8 @@ def process_log_file(cur, filepath):
         songplay_data = (   start_time,
                             record.userId,
                             record.level,
-                            str(songid),
-                            str(artistid),
+                            songid,
+                            artistid,
                             record.sessionId,
                             record.location,
                             record.userAgent)
