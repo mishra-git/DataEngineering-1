@@ -19,14 +19,15 @@ songplay_table_create = ("""
                          session_id int not null, \
                          location varchar not null, \
                          user_agent varchar not null);
-                         """)
+""")
+
 user_table_create = ("""
                      CREATE TABLE IF NOT EXISTS users (user_id varchar  primary key, \
                      first_name varchar,  \
                      last_name varchar,  \
                      gender varchar, \
                      level varchar);
-                     """)
+""")
 
 song_table_create = ("""
                      CREATE TABLE IF NOT EXISTS songs (song_id varchar primary key , \
@@ -34,7 +35,7 @@ song_table_create = ("""
                      artist_id varchar, \
                      year int, \
                      duration decimal);
-                     """)
+""")
 
 artist_table_create = ("""
                        CREATE TABLE IF NOT EXISTS artists (artist_id varchar primary key , \
@@ -42,7 +43,7 @@ artist_table_create = ("""
                        location varchar,\
                        latitude decimal null, \
                        longitude decimal null);
-                       """)
+""")
                        
 time_table_create = ("""
                      CREATE TABLE IF NOT EXISTS time (start_time timestamp  not null, \
@@ -52,7 +53,7 @@ time_table_create = ("""
                      month int, \
                      year int, \
                      weekday int);
-                     """)
+""")
 
 # THIS SECTION IS FOR INSERTING ROWS INTO THE TABLES
 
@@ -76,7 +77,8 @@ user_table_insert = ("""
                         gender, \
                         level)
     VALUES (%s, %s, %s, %s, %s)
-    ON CONFLICT DO NOTHING;
+    ON CONFLICT(user_id)
+    DO UPDATE SET level=EXCLUDED.level || 'free'
 
 """)
 
